@@ -20,6 +20,7 @@ class PurchaseForm extends React.Component {
     .then(res => {
       this.setState({stock: res.data})
     }).catch(err => {
+      this.setState({stock: {}})
       console.log(err)
     })
   }
@@ -30,22 +31,26 @@ class PurchaseForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:3001/transactions/new/`, {
-      users_id: this.props.user.id,
-      ticker: this.state.ticker,
-      transaction_type: "BUY",
-      quantity: this.state.quantity,
-      price: this.state.stock.latestPrice
-    })
-      .then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
+    if(this.validateBalance() && this.validateTicker() && this.validateQuantity()){
+      return axios.post(`http://localhost:3001/transactions/new/`, {
+        users_id: this.props.user.id,
+        ticker: this.state.ticker,
+        transaction_type: "BUY",
+        quantity: this.state.quantity,
+        price: this.state.stock.latestPrice
+      })
+        .then(res => {
+        console.log(res)
+      }).catch(err => {
+        console.log(err)
+      })
+    } else {
+      alert("Please enter valid information!")
+    }
   }
 
   validateQuantity = () => {
-    return Number.isInteger(this.state.quantity) 
+    return Number.isInteger(parseInt(this.state.quantity)) 
   }
 
   validateBalance = () => {
@@ -56,6 +61,15 @@ class PurchaseForm extends React.Component {
       return true 
     } else {
       return false 
+    }
+  }
+
+  validateTicker = () => {
+    const ticker = this.state.stock
+    if(Object.entries(ticker).length === 0){
+      return false 
+    } else {
+      return true 
     }
   }
 
