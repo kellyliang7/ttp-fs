@@ -15,20 +15,17 @@ const getUserTransactions = (req, res, next) => {
   });
 }
 
-const createTransaction = (req, res, next) => {
-  db.none("INSERT INTO user_transactions(users_id, ticker_symbol, transaction_type, quantity, price) VALUES(${users_id}, ${ticker_symbol), ${transaction_type}, ${quantity}, ${price})",
-    req.body
-  )
-  .then(() => {
-    res.status(200).json({
-      status: "Success",
-      message: "Created a transaction"
-    });
-  })
-  .catch(err => {
-    console.log(err)
-    return next(err);
-  });
-};
+// const createTransaction = (req, res, next) => {
+//   db.none("INSERT INTO user_transactions(users_id, ticker_symbol, transaction_type, quantity, price) VALUES(${users_id}, ${ticker_symbol), ${transaction_type}, ${quantity}, ${price})", req.body)
+//   .then(() => {
+//     res.status(200).json({
+//       status: "Success",
+//       message: "Created a transaction"
+//     });
+//   })
+//   .catch(err => {
+//     return next(err);
+//   });
+// };
 
-module.exports = { getUserTransactions, createTransaction }
+module.exports = { getUserTransactions }
