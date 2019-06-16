@@ -26,6 +26,16 @@ class App extends React.Component {
       })
   }
 
+  logout = () => {
+    axios.get('/users/logout')
+      .then(res => {
+        this.setLoggedInUser({});
+      })
+      .catch(err => {
+        console.log("Error =>", err);
+      })
+  }
+
   componentDidMount(){
     this.isLoggedIn();
   }
@@ -50,7 +60,7 @@ class App extends React.Component {
     const {userLoggedIn} = this.state
     return(
       <React.Fragment>
-        <NavBar /> 
+        <NavBar userLoggedIn={userLoggedIn} logout={this.logout} /> 
         <Switch>
           <Route exact path='/auth' render={this.renderAuth} />
           <PrivateRoute 

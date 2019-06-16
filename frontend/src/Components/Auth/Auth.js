@@ -1,6 +1,7 @@
 import React from 'react';
 import Login from './Login';
 import Signup from './Signup';
+import axios from 'axios';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -12,7 +13,49 @@ class Auth extends React.Component {
     }
   }
 
+  loginUser = () => {
+    const { username, password } = this.state;
+    axios.post('/users/login', {username, password})
+      .then(res => {
+        const user = res.data;
+        this.props.setLoggedInUser(user);
+      })
+      .catch(err => {
+        console.log("Error:", err);
+      })
+  }
 
+  handleLogin = (e) => {
+    e.preventDefault();
+    this.loginUser();
+  }
+
+  handleSignup = (e) => {
+    const { username, password } = this.state;
+    e.preventDefault();
+    // Make NET request
+    axios.post('/users/new', {username, password})
+      .then(res => {
+        this.loginUser();
+      })
+      .catch(err => {
+        console.log("Error:", err);
+      })
+  }
+
+  toggleForm = () => {
+    this.setState((prevState) => {
+      return {
+        loginDisplay: !prevState.loginDisplay
+      }
+    })
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
   render() {
     const { username, password } = this.state
