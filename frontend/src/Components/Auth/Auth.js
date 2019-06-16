@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './Login';
-import Signup from '.Signup';
+import Signup from './Signup';
 
 class Auth extends React.Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Auth extends React.Component {
 
 
   render() {
+    const { username, password } = this.state
     return(
       <div>
         <h2>Welcome</h2>
@@ -38,3 +39,5 @@ class Auth extends React.Component {
     )
   }
 }
+
+export default Auth;

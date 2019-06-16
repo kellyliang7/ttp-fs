@@ -1,12 +1,18 @@
 import React from 'react';
-import './App.css';
 import NavBar from './Components/NavBar'
+import axios from "axios";
 import { Route, Switch } from "react-router-dom";
+import Auth from './Components/Auth/Auth'
+import PrivateRoute from './Components/Auth/PrivateRoute'
+import Portfolio from './Components/Portfolio/UserPorfolio'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      userLoggedIn: false,
+      user: {}
+    }
   }
 
   isLoggedIn = () => {
@@ -41,11 +47,17 @@ class App extends React.Component {
   }
 
   render() {
+    const {userLoggedIn} = this.state
     return(
       <React.Fragment>
         <NavBar /> 
         <Switch>
-
+          <Route exact path='/auth' render={this.renderAuth} />
+          <PrivateRoute 
+            userLoggedIn={userLoggedIn}
+            path='/portfolio' 
+            component={Portfolio} 
+          />
         </Switch>
       </React.Fragment>
     )
