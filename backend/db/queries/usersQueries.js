@@ -1,13 +1,13 @@
 const db = require('./index');
 
-const authHelpers = require("../auth/helpers");
+const authHelpers = require("../../auth/helpers")
 
 function createUser(req, res, next) {
   const hash = authHelpers.createHash(req.body.password);
 
   db.none(
-    "INSERT INTO users (username, password_digest) VALUES (${username}, ${password})",
-    { username: req.body.username, password: hash }
+    "INSERT INTO users (username, email, password_digest) VALUES (${username}, ${email}, ${password})",
+    { username: req.body.username, password: hash, email: req.body.email }
   )
     .then(() => {
       res.status(200).json({
@@ -25,11 +25,13 @@ function logoutUser(req, res, next) {
 }
 
 function loginUser(req, res) {
+  delete req.user.password_digest
   res.json(req.user);
 }
 
 function isLoggedIn(req, res) {
   if (req.user) {
+    delete req.user.password_digest
     res.json({ username: req.user });
   } else {
     res.status(401).json({ err: "Nobody logged in" });
