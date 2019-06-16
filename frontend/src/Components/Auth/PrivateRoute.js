@@ -1,14 +1,22 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-const PrivateRoute = ({path, component, userLoggedIn}) => {
- if (userLoggedIn) {
-    return (
-      <Route path={path} component={component} />
-    )
-  } else {
-    return <Redirect to='/' />
-  }
-}
+const PrivateRoute = ({ userLoggedIn: userLoggedIn, component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      userLoggedIn ? (
+        <Component {...props} {...rest} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { from: props.location }
+          }}
+        />
+      )
+    }
+  />
+);
 
-export default PrivateRoute
+export default PrivateRoute;

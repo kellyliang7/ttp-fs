@@ -4,7 +4,7 @@ import axios from "axios";
 import { Route, Switch } from "react-router-dom";
 import Auth from './Components/Auth/Auth'
 import PrivateRoute from './Components/Auth/PrivateRoute'
-import Portfolio from './Components/Portfolio/UserPorfolio'
+import UserPortfolio from './Components/Portfolio/UserPorfolio'
 
 class App extends React.Component {
   constructor(props) {
@@ -66,7 +66,8 @@ class App extends React.Component {
           <PrivateRoute 
             userLoggedIn={userLoggedIn}
             path='/portfolio' 
-            component={Portfolio} 
+            user={this.state.user}
+            component={UserPortfolio} 
           />
         </Switch>
       </React.Fragment>

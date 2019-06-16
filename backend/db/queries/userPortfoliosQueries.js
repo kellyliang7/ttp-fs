@@ -2,7 +2,7 @@ const db = require('./index.js')
 
 const getUserPortfolios = (req, res, next) => {
   let userId = parseInt(req.params.id);
-  db.any("SELECT * FROM user_porfolios WHERE users_id=$1", userId)
+  db.any("SELECT * FROM user_portfolios WHERE users_id=$1", userId)
     .then(user_porfolios => {
       res.status(200).json({
         status: "Success",
