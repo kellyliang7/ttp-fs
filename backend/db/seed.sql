@@ -13,6 +13,14 @@ CREATE TABLE users (
   balance FLOAT NOT NULL DEFAULT 5000
 );
 
+CREATE TABLE user_portfolios (
+  id SERIAL PRIMARY KEY,
+  users_id INT REFERENCES users(id),
+  ticker_symbol VARCHAR NOT NULL,
+  quantity INT NOT NULL, 
+  purchase_price FLOAT NOT NULL
+);
+
 CREATE TABLE user_transactions (
   id SERIAL PRIMARY KEY,
   users_id INT REFERENCES users(id),

@@ -10,6 +10,8 @@ const passport = require("./auth/local");
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const transactionsRouter = require('./routes/transactions');
+const portfoliosRouter = require('./routes/userPortfolios');
+
 
 
 var app = express();
@@ -39,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/transactions', transactionsRouter); 
+app.use('/portfolios', portfoliosRouter);
 
 
 // catch 404 and forward to error handler
