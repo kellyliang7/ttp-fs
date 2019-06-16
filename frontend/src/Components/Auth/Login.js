@@ -4,13 +4,13 @@ const Login = ({username, password, toggleForm, handleLogin, handleChange}) => {
   return (<div>
     <h2>Login</h2>
     <form onSubmit={handleLogin}>
-      <label> Username
+      <label> Email
        <input 
         required
         value={username}
         name='username'
         type='text'
-        placeholder="Username"
+        placeholder="email"
         onChange={handleChange}
       />
       </label>

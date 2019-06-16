@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Signup = ({username, password, toggleForm, handleSignup, handleChange}) => {
+const Signup = ({username, password, email, toggleForm, handleSignup, handleChange}) => {
   return (<div>
     <h2>Signup</h2>
     <form onSubmit={handleSignup}>
@@ -13,6 +13,16 @@ const Signup = ({username, password, toggleForm, handleSignup, handleChange}) =>
         placeholder="Username"
         onChange={handleChange}
       />
+      </label>
+      <label> Email
+        <input 
+          required
+          value={email}
+          name='email'
+          type='email'
+          placeholder="email"
+          onChange={handleChange}
+        />
       </label>
       <label> Password
         <input 

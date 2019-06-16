@@ -10,6 +10,7 @@ class Auth extends React.Component {
       loginDisplay: false,
       username: '',
       password: '',
+      email: ''
     }
   }
 
@@ -31,10 +32,10 @@ class Auth extends React.Component {
   }
 
   handleSignup = (e) => {
-    const { username, password } = this.state;
+    const { username, password, email } = this.state;
     e.preventDefault();
     // Make NET request
-    axios.post('/users/new', {username, password})
+    axios.post('/users/new', {username, password, email})
       .then(res => {
         this.loginUser();
       })
@@ -58,7 +59,7 @@ class Auth extends React.Component {
   }
 
   render() {
-    const { username, password } = this.state
+    const { username, password, email } = this.state
     return(
       <div>
         <h2>Welcome</h2>
@@ -73,6 +74,7 @@ class Auth extends React.Component {
           : <Signup 
               username={username}
               password={password}
+              email={email}
               handleSignup={this.handleSignup}
               toggleForm={this.toggleForm}
               handleChange={this.handleChange}

@@ -62,7 +62,7 @@ class App extends React.Component {
       <React.Fragment>
         <NavBar userLoggedIn={userLoggedIn} logout={this.logout} /> 
         <Switch>
-          <Route exact path='/auth' render={this.renderAuth} />
+          <Route exact path='/' render={this.renderAuth} />
           <PrivateRoute 
             userLoggedIn={userLoggedIn}
             path='/portfolio' 
