@@ -1,4 +1,6 @@
 import React from 'react'
+import '../../App.css'
+
 
 const Signup = ({username, password, email, toggleForm, handleSignup, handleChange}) => {
   return (<div>

@@ -2,6 +2,8 @@ import React from 'react';
 import Login from './Login';
 import Signup from './Signup';
 import axios from 'axios';
+import '../../App.css'
+
 
 class Auth extends React.Component {
   constructor(props) {

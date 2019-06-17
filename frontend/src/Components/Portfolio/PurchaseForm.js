@@ -1,5 +1,7 @@
 import React from "react";
 import axios from 'axios'; 
+import '../../App.css'
+
 
 class PurchaseForm extends React.Component {
   constructor(props) {

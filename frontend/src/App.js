@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import Auth from './Components/Auth/Auth'
 import PrivateRoute from './Components/Auth/PrivateRoute'
 import UserPortfolio from './Components/Portfolio/UserPorfolio'
+import UserTransactions from './Components/Transactions/UserTransactions'
 
 class App extends React.Component {
   constructor(props) {
@@ -68,6 +69,12 @@ class App extends React.Component {
             path='/portfolio' 
             user={this.state.user}
             component={UserPortfolio} 
+          />
+          <PrivateRoute 
+            userLoggedIn={userLoggedIn}
+            path='/transactions' 
+            user={this.state.user}
+            component={UserTransactions} 
           />
         </Switch>
       </React.Fragment>
