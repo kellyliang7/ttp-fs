@@ -3,11 +3,13 @@ import '../../App.css'
 
 
 const Login = ({username, password, toggleForm, handleLogin, handleChange}) => {
-  return (<div>
+  return (
+  <div className="registerPage">
+    <div className="form">
     <h2>Login</h2>
-    <form onSubmit={handleLogin}>
-      <label> Email
-       <input 
+    <form className="registerForm"onSubmit={handleLogin}>
+      <label> 
+       <input className="formInput"
         required
         value={username}
         name='username'
@@ -16,19 +18,20 @@ const Login = ({username, password, toggleForm, handleLogin, handleChange}) => {
         onChange={handleChange}
       />
       </label>
-      <label> Password
-        <input 
+      <label> 
+        <input className="formInput"
           required
           value={password}
           name='password'
           type='password'
-          placeholder="Password"
+          placeholder="password"
           onChange={handleChange}
         />
       </label>
-      <input type='submit' value='Login' />
+      <input className="submit" type='submit' value='LOGIN' />
       <button onClick={toggleForm}>Don't have an account?</button>
     </form>
+    </div>
   </div>)
 }
 

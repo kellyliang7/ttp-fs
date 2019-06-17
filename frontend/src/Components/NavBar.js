@@ -8,9 +8,11 @@ const NavBar = (props) => {
       {props.userLoggedIn 
         ? (
         <div>
-          <NavLink to={"/portfolio"}>Portfolio</NavLink>
-          <NavLink to={"/transactions"}>Transactions</NavLink>
-          <button onClick={props.logout}>Logout</button>
+          <ul className="menu">
+            <li>><NavLink to={"/portfolio"}>Portfolio</NavLink></li>
+            <li><NavLink to={"/transactions"}>Transactions</NavLink></li>
+          </ul>
+            <button onClick={props.logout}>Logout</button>
         </div>
         ) 
         : null}

@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  background-color: #ffe4c46e;
   color: #67b890;
 }
 
@@ -12,9 +12,9 @@ h2 {
   font-size: 35px;
 }
 
-.signupPage {
+.registerPage {
   width:360px;
-  padding: 8% 0 0;
+  padding: 3% 0 0;
   margin: auto;
 }
 
@@ -29,7 +29,7 @@ h2 {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.form input {
+.form .formInput {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #f2f2f2;
@@ -45,6 +45,25 @@ h2 {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: black;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form button:hover  {
+  background: grey;
+}
+
+.submit {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
   background: #67b890;
   width: 100%;
   border: 0;
@@ -53,9 +72,10 @@ h2 {
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
-  cursor: pointer;
+  cursor: pointer; 
+  margin: 0 0 15px;
 }
 
-.form button:hover {
+.submit:hover {
   background: #43A047;
 }

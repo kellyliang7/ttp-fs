@@ -22,6 +22,7 @@ class Auth extends React.Component {
       .then(res => {
         const user = res.data;
         this.props.setLoggedInUser(user);
+        this.props.history.push('/portfolio');
       })
       .catch(err => {
         console.log("Error:", err);
@@ -61,10 +62,11 @@ class Auth extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const { username, password, email } = this.state
     return(
       <div>
-        <h2>Welcome</h2>
+        <h2>Welcome to Stock Portfolio!</h2>
         {this.state.loginDisplay 
           ? <Login 
               username={username}
