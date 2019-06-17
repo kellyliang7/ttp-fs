@@ -39,8 +39,8 @@ class PurchaseForm extends React.Component {
         quantity: this.state.quantity,
         price: this.state.stock.latestPrice
       })
-        .then(res => {
-        console.log(res)
+        .then(() => {
+          this.updateBalance()
       }).catch(err => {
         console.log(err)
       })
@@ -73,15 +73,29 @@ class PurchaseForm extends React.Component {
     }
   }
 
-  // updateBalance = (transactionTotal) => {
-  //   const balance = this.state.user.balance
-  //   const quantity = this.state.quantity
-  //   const price = this.state.stock.latestPrice
-    
-  // }
+  updateBalance = () => {
+    const balance = this.state.balance
+    console.log('THIS IS BALANCE', balance)
+    const quantity = this.state.quantity
+    const price = this.state.stock.latestPrice
+    const total = quantity * price 
+    let id = this.props.user.id
+    axios.patch(`http://localhost:3001/users/update/${id}`, {
+      balance: balance-total
+    })
+    .then(() => {
+      this.getBalance()
+    }).catch(err => {
+      console.log(err)
+    })
+  }
 
   componentDidMount() {
-    let id = this.props.user.id
+    this.getBalance()
+  }
+
+  getBalance = () => {
+    let id = this.props.user.id 
     axios.get(`http://localhost:3001/users/balance/${id}`)
     .then(res => {
       this.setState({balance: res.data.data.balance})
