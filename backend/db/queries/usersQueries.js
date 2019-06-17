@@ -38,9 +38,40 @@ function isLoggedIn(req, res) {
   }
 }
 
+function editUser(req, res, next) {
+  db.none("UPDATE users SET balance=${balance} WHERE id=${id}", {
+    balance: parseInt(req.body.balance),
+    id: parseInt(req.params.id)
+  })
+  .then(() => {
+    res.status(200).json({
+      status: "Success",
+      message: "You have updated your profile"
+    })
+  })
+  .catch(err => {
+    return next (err)
+  })
+}
+
+function getUserBalance(req, res, next) {
+  db.one("SELECT balance FROM users WHERE id=${id}", {
+    id: parseInt(req.params.id)
+  })
+  .then((data) => {
+    res.status(200).json({
+      status: "Succes",
+      data,
+      message: "Received balance"
+    })
+  })
+}
+
 module.exports = {
   createUser: createUser,
   logoutUser: logoutUser,
   loginUser: loginUser,
-  isLoggedIn: isLoggedIn
+  isLoggedIn: isLoggedIn,
+  editUser: editUser,
+  getUserBalance: getUserBalance
 };

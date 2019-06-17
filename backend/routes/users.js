@@ -8,6 +8,8 @@ const { loginRequired } = require("../auth/helpers");
 router.post("/new", db.createUser);
 router.post("/login", passport.authenticate("local", {}), db.loginUser);
 router.get("/isLoggedIn", db.isLoggedIn);
+router.patch("/update/:id", db.editUser);
 router.get("/logout", loginRequired, db.logoutUser);
+router.get("/balance/:id", db.getUserBalance);
 
 module.exports = router;
