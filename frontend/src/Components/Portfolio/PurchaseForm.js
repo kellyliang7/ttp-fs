@@ -73,10 +73,32 @@ class PurchaseForm extends React.Component {
     }
   }
 
+  // updateBalance = (transactionTotal) => {
+  //   const balance = this.state.user.balance
+  //   const quantity = this.state.quantity
+  //   const price = this.state.stock.latestPrice
+    
+  // }
+
+  componentDidMount() {
+    let id = this.props.user.id
+    axios.get(`http://localhost:3001/users/balance/${id}`)
+    .then(res => {
+      this.setState({balance: res.data.data.balance})
+    })
+    .then(() => {
+      console.log(this.state)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   render() {
     return(
       <>
         <h1>Form</h1>
+        <h2>Balance: {this.state.balance}</h2>
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} type="text" name="ticker" placeholder="Ticker" value={this.state.ticker} onBlur={this.getStockInfo} />
           <input onChange={this.handleChange} type="text" name="quantity" placeholder="Quantity" value={this.state.quantity} />
