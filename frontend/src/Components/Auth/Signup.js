@@ -3,10 +3,13 @@ import '../../App.css'
 
 
 const Signup = ({username, password, email, toggleForm, handleSignup, handleChange}) => {
-  return (<div>
-    <h2>Signup</h2>
-    <form onSubmit={handleSignup}>
-      <label> Username
+  return (
+  <div className="singupPage">
+  <div className="form">
+    <h1>Signup</h1>
+    <form className="registerForm"onSubmit={handleSignup}>
+    <div className="formRow">
+      <label> 
        <input 
         required
         value={username}
@@ -16,17 +19,21 @@ const Signup = ({username, password, email, toggleForm, handleSignup, handleChan
         onChange={handleChange}
       />
       </label>
-      <label> Email
+    </div>
+    <div className="formRow">
+      <label> 
         <input 
           required
           value={email}
           name='email'
           type='email'
-          placeholder="email"
+          placeholder="Email"
           onChange={handleChange}
         />
       </label>
-      <label> Password
+    </div>
+    <div className="formRow">
+      <label> 
         <input 
           required
           value={password}
@@ -36,9 +43,11 @@ const Signup = ({username, password, email, toggleForm, handleSignup, handleChan
           onChange={handleChange}
         />
       </label>
-      <input type='submit' value='Sign-up' />
+    </div>
+      <input type='submit' value='CREATE' />
       <button onClick={toggleForm}>Have an account?</button>
     </form>
+    </div>
   </div>)
 }
 
