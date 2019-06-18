@@ -29,9 +29,7 @@ class UserTransactions extends React.Component {
     let displayTransactions = transactions.map(transaction => {
       return (
         <div>
-          <p>ticker_symbol={transaction.ticker_symbol}</p>
-          <p>quantity={transaction.quantity}</p>
-          <p>price={transaction.price}</p>
+          <p>BUY ({transaction.ticker_symbol}) - {transaction.quantity} shares @ {transaction.price}</p>
         </div>
       )
     })
