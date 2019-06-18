@@ -87,6 +87,7 @@ class PurchaseForm extends React.Component {
     })
     .then(() => {
       this.getBalance()
+      this.updatePortfolio()
     }).catch(err => {
       console.log(err)
     })
@@ -101,6 +102,55 @@ class PurchaseForm extends React.Component {
     axios.get(`http://localhost:3001/users/balance/${id}`)
     .then(res => {
       this.setState({balance: res.data.data.balance})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  updatePortfolio = () => {
+    let id = this.props.user.id 
+    let ticker = this.state.ticker
+    axios.get(`http://localhost:3001/portfolios/${id}/${ticker}`)
+    .then(res => {
+      const {portfolioItem} = res.data
+      if(portfolioItem[0]){
+        this.updatePortfolioItem(portfolioItem[0])
+      } else {
+        this.createPortfolioItem()
+      }
+      console.log(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  createPortfolioItem = () => {
+    const portfolioItem = {
+      users_id: this.props.user.id,
+      ticker: this.state.ticker,
+      quantity: this.state.quantity,
+      purchase_price: this.state.stock.latestPrice
+    }
+    axios.post(`http://localhost:3001/portfolios/new`, portfolioItem)
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  updatePortfolioItem = (item) => {
+    const portfolioItem = {
+      quantity: parseInt(this.state.quantity) + parseInt(item.quantity),
+      users_id: this.props.user.id,
+      ticker: this.state.ticker,
+    }
+    axios.patch(`http://localhost:3001/portfolios/update`, portfolioItem)
+    .then(res => {
+      console.log(res.data)
     })
     .catch(err => {
       console.log(err)
