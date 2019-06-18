@@ -15,6 +15,23 @@ const getUserPortfolios = (req, res, next) => {
     })
 }
 
+const getPortfolioItem = (req, res, next) => {
+  let userId = parseInt(req.params.id);
+  let ticker_symbol = req.params.ticker_symbol;
+  db.any("SELECT * FROM user_portfolios WHERE users_id=$1 AND ticker_symbol=$2",
+   [userId, ticker_symbol])
+   .then((portfolioItem) => {
+    res.status(200).json({
+      status: "Success",
+      portfolioItem,
+      message: "Received portfolio item"
+    });
+  })
+  .catch(err => {
+    return next(err);
+  });
+}
+
 const createPortfolioItem = (req, res, next) => {
   const values = Object.values(req.body)
   db.any("INSERT INTO user_portfolios(users_id, ticker_symbol, quantity, purchase_price) VALUES($1, $2, $3, $4)",
@@ -45,4 +62,4 @@ const updatePortfolioItem = (req, res, next) => {
   });
 }
 
-module.exports = { getUserPortfolios, createPortfolioItem, updatePortfolioItem }
+module.exports = { getUserPortfolios, createPortfolioItem, updatePortfolioItem, getPortfolioItem }

@@ -102,9 +102,6 @@ class PurchaseForm extends React.Component {
     .then(res => {
       this.setState({balance: res.data.data.balance})
     })
-    .then(() => {
-      console.log(this.state)
-    })
     .catch(err => {
       console.log(err)
     })
