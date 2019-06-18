@@ -6,7 +6,7 @@ const Login = ({username, password, toggleForm, handleLogin, handleChange}) => {
   return (
   <div className="registerPage">
     <div className="form">
-    <h2>Login</h2>
+    <h1>Login</h1>
     <form className="registerForm"onSubmit={handleLogin}>
       <label> 
        <input className="formInput"

@@ -25,7 +25,7 @@ class UserPortfolio extends React.Component {
   render(){
     return(
       <div>
-        <h1>List of stocks in portfolio</h1>
+        <h2>Portfolio</h2>
         <PurchaseForm 
         user={this.props.user}
         />

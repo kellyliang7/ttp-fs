@@ -66,7 +66,7 @@ class Auth extends React.Component {
     const { username, password, email } = this.state
     return(
       <div>
-        <h2>Welcome to Stock Portfolio!</h2>
+        <h1>Welcome to Stock Portfolio!</h1>
         {this.state.loginDisplay 
           ? <Login 
               username={username}

@@ -41,7 +41,7 @@ class UserTransactions extends React.Component {
   render() {
     return(
       <div>
-        <h1>UserTransactions</h1>
+        <h2>Transactions</h2>
         {this.displayTransactions()}
       </div>
     )

@@ -112,15 +112,16 @@ class PurchaseForm extends React.Component {
 
   render() {
     return(
-      <>
-        <h1>Form</h1>
-        <h2>Balance: {this.state.balance}</h2>
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} type="text" name="ticker" placeholder="Ticker" value={this.state.ticker} onBlur={this.getStockInfo} />
-          <input onChange={this.handleChange} type="text" name="quantity" placeholder="Quantity" value={this.state.quantity} />
-          <button>Buy</button>
-        </form>
-      </>
+      <div className="portfolioPage">
+        <div className="formPage">
+          <h3>Cash Balance: ${this.state.balance}</h3>
+          <form className="portfolioForm"onSubmit={this.handleSubmit}>
+            <input className="formInput" onChange={this.handleChange} type="text" name="ticker" placeholder="Ticker" value={this.state.ticker} onBlur={this.getStockInfo} />
+            <input className="formInput" onChange={this.handleChange} type="text" name="quantity" placeholder="Quantity" value={this.state.quantity} />
+            <button className="submit">Buy</button>
+          </form>
+        </div>
+      </div>
     )
   }
 }
