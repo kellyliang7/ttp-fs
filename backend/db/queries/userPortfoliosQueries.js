@@ -3,11 +3,11 @@ const db = require('./index.js')
 const getUserPortfolios = (req, res, next) => {
   let userId = parseInt(req.params.id);
   db.any("SELECT * FROM user_portfolios WHERE users_id=$1", userId)
-    .then(user_porfolios => {
+    .then(user_portfolios => {
       res.status(200).json({
         status: "Success",
-        user_porfolios,
-        message: "Received user_porfolios"
+        user_portfolios,
+        message: "Received user_portfolios"
       })
     })
     .catch(err => {
@@ -16,8 +16,9 @@ const getUserPortfolios = (req, res, next) => {
 }
 
 const getPortfolioItem = (req, res, next) => {
-  let userId = parseInt(req.params.id);
+  let userId = parseInt(req.params.users_id);
   let ticker_symbol = req.params.ticker_symbol;
+  console.log(userId, ticker_symbol)
   db.any("SELECT * FROM user_portfolios WHERE users_id=$1 AND ticker_symbol=$2",
    [userId, ticker_symbol])
    .then((portfolioItem) => {
